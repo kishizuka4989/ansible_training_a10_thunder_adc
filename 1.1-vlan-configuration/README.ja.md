@@ -54,7 +54,7 @@ Ansible実行用サーバーのplaybookディレクトリで、`a10_network_vlan
 
 ``` 
 ---
-- hosts: 10.255.0.1
+- hosts: 192.168.0.1
   connection: local
   gather_facts: no
   collections:
@@ -71,7 +71,7 @@ Ansible実行用サーバーのplaybookディレクトリで、`a10_network_vlan
 
 ``` 
 ---
-- hosts: 10.255.0.1
+- hosts: 192.168.0.1
   connection: local
   gather_facts: no
   collections:
@@ -196,7 +196,7 @@ Playbookの内容のうち、`state`を`present`から`absent`に書き換えて
 
 ```
 ---
-- hosts: 10.255.0.1
+- hosts: 192.168.0.1
   connection: local
   gather_facts: no
   collections:
@@ -278,7 +278,7 @@ Playbookの内容を以下のように書き換えて保存します。
 
 ```
 ---
-- hosts: 10.255.0.1
+- hosts: 192.168.0.1
   connection: local
   gather_facts: no
   collections:
@@ -426,7 +426,7 @@ Playbookを以下のように記述し保存します。
 
 ```
 ---
-- hosts: 10.255.0.1
+- hosts: 192.168.0.1
   connection: local
   gather_facts: no
   collections:
@@ -527,7 +527,7 @@ end
 
 ``` 
 ---
-- hosts: 10.255.0.1
+- hosts: 192.168.0.1
   connection: local
   gather_facts: no
   collections:
