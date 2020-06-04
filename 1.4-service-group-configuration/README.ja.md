@@ -33,7 +33,7 @@ Service-Groupを設定するために、Ansible実行用サーバーのplaybook�
     ansible_host: "192.168.0.1"
   tasks:
   - name: Configure service group
-    a10_slb_server:
+    a10_slb_service_group:
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
