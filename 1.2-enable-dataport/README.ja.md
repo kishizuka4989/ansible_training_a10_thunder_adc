@@ -104,6 +104,7 @@ vThunderの持つ2つのデータポートを連続してenableし、設定を�
 # データポートをenableするPlaybookの実行
 
 このPlaybookを実行すると、以下のようになります。`hosts_cli`をインベントリファイルとして利用することにご注意ください。
+(注：このPlaybookが動作するにはAnsibleサーバー上にvThunderの公開鍵が保存されている必要があります。もし動作しない場合はAnsibleサーバーから一度vThunderにSSHでログインしてください）
 
 ```
 [root@ansible playbook]# ansible-playbook -i hosts_cli a10_interfaces_ethernet_enable.yaml
