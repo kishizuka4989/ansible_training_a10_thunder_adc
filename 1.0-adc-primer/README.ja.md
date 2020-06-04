@@ -185,7 +185,7 @@ Ansible実行サーバ上で実習用のplaybookを格納するディレクト�
 [root@ansible playbook]# vi hosts
 ```
 
-`hosts_axapi`に以下の内容を記述し保存します。
+`hosts`に以下の内容を記述し保存します。
 ```
 [vThunder]
 192.168.0.1
