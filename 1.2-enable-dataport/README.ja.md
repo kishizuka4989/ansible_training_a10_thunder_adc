@@ -198,7 +198,13 @@ PLAY RECAP *********************************************************************
 # スタティックルートを設定するPlaybookの作成
 
 実習の環境では、クライアントとvThunderとの間にルーターがあるため、クライアント側に通信を戻す場合にはルーターに対するスタティックルートを設定しないとクライアントに通信が正しく戻りません。
-このスタティックルートを設定にするために、Ansible実行用サーバーのplaybookディレクトリで、`a10_create_ip_route_rib.yaml`という名前でPlaybookを作成します。
+このスタティックルートを設定にするために、Ansible実行用サーバーのplaybookディレクトリで、`a10_ip_route_rib_create.yaml`という名前でPlaybookを作成します。
+
+```
+[root@ansible playbook]# vi a10_ip_route_rib_create.yaml
+```
+
+スタティックルートを設定して設定を保存するようにPlaybookを記述します。
 
 ``` 
 ---
@@ -245,7 +251,7 @@ PLAY RECAP *********************************************************************
 このPlaybookを実行すると、以下のようになります。ここでは`hosts`をインベントリファイルとして利用することにご注意ください。
 
 ```
-[root@ansible playbook]# ansible-playbook -i hosts a10_create_ip_route_rib.yaml
+[root@ansible playbook]# ansible-playbook -i hosts a10_ip_route_rib_create.yaml
 
 PLAY [192.168.0.1] ********************************************************************************************************************************
 
