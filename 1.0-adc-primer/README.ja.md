@@ -180,9 +180,9 @@ Ansible実行サーバ上で実習用のplaybookを格納するディレクト�
 [root@ansible ~]# cd playbook
 ```
 
-ディレクトリ内にAnsibleのインベントリを示すためのファイル`hosts_axapi`を作成します。
+ディレクトリ内にAnsibleのインベントリを示すためのファイル`hosts`を作成します。
 ```
-[root@ansible playbook]# vi hosts_axapi
+[root@ansible playbook]# vi hosts
 ```
 
 `hosts_axapi`に以下の内容を記述し保存します。
