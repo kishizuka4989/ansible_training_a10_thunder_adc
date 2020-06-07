@@ -42,7 +42,7 @@ Virtual-Serverを設定するために、Ansible実行用サーバーのplaybook
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       name: "vip1"
       ip_address: "10.0.1.100"
       port_list:
@@ -62,7 +62,7 @@ Virtual-Serverを設定するために、Ansible実行用サーバーのplaybook
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
@@ -195,9 +195,38 @@ Total received conn attempts on this port: 0
 
 Virtual-Serverの動作を確認するために、クライアントからVirtual-ServerのVIPにHTTPSでアクセスします。
 
-Windows 10クライアントからは、ブラウザ（Chrome、Firefox、Edgeなど）で、https://10.0.1.100/にアクセスします。
+CentOSクライアントからは、curlでhttps://10.0.1.100/にアクセスします。
+サーバー証明書に自己証明書を用いているため、curlの証明書の正当性に関する警告を無視するオプションとして-kを付与してください。
+
+```
+-bash-4.2$ curl -k https://10.0.1.100/
+<HTML>
+<HEAD>
+<TITLE>A10 Networks AX Training</TITLE>
+</HEAD>
+<BODY>
+<h1>It works!</h1>
+<h2>You are on Server S1</h2>
+<p></p>
+</body>
+</html>
+-bash-4.2$ curl -k https://10.0.1.100/
+<HTML>
+<HEAD>
+<TITLE>A10 Networks AX Training</TITLE>
+</HEAD>
+<BODY>
+<h1>It works!</h1>
+<h2>You are on Server S2</h2>
+<p></p>
+</body>
+</html>
+-bash-4.2$
+```
+
+ブラウザ（Firefox）で、https://10.0.1.100/にアクセスすることもできます。
 サーバー証明書に自己証明書を用いているため、初回のアクセスでは警告が出ますが、警告を無視してアクセスしてください。
-10秒程度間隔をあけて再読み込みを実行すると、実行するたびに負荷分散されてアクセスするWebサーバーが変わることを確認できます。
+ブラウザを再起動して再読み込みを実行すると、実行するたびに負荷分散されてアクセスするWebサーバーが変わることを確認できます。
 
 vThunderで負荷分散の状況を確認するには、`show slb virtual-server`、`show slb service-group`、`show slb server`などを実行します。
 
