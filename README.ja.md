@@ -25,8 +25,8 @@
 ![Training environment diagram](./images/Ansible-setup01.png)
 
 演習環境は上記のようになっており、以下から構成されます。
-- Window 10クライアント （Client）
-- Ansible実行用CentOS （Ansible）
+- クライアント用CentOS （Client）
+- Ansible実行用CentOS （Ansible Server）
 - vThunder （vThunder）
 - WebサーバCentOS （Web Server 1）
 - WebサーバCentOS （Web Server 2）
