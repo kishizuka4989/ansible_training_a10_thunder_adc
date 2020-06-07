@@ -38,7 +38,7 @@ SSL/TLSテンプレートを作成するために、Ansible実行用サーバー
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       name: "ssl1"
       cert_str: "server.crt"
       key_str: "server.key"
@@ -46,11 +46,10 @@ SSL/TLSテンプレートを作成するために、Ansible実行用サーバー
 
   - name: Write memory
     a10_write_memory:
-      a10_host: "{{ a10_host }}"
-      a10_port: "{{ a10_port }}"
-      a10_username: "{{ a10_username }}"
-      a10_password: "{{ a10_password }}"
-      a10_protocol: "{{ a10_protocol }}"
+      ansible_host: "{{ ansible_host }}"
+      ansible_port: "{{ ansible_port }}"
+      ansible_username: "{{ ansible_username }}"
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
