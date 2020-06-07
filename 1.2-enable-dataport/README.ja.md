@@ -318,39 +318,44 @@ end
 # クライアントとWebサーバーからのvThunderへの疎通確認
 
 データポートが利用可能になったので、クライアントからvThunderへの疎通確認を行うことができます。
-Windows10のクライアントにログインし、vThunderのve10（10.0．1.1）に対してコマンドプロンプトから`ping`を実行すると応答が返ってくるので、疎通を確認できます。
+CentOSクライアントからvThunderのve10（10.0．1.1）に対してターミナルから`ping`を実行すると応答が返ってくるので、疎通を確認できます。
+疎通が確認できたら、`[Ctrl]+[C]`でPingを停止してください。
 
 ```
-C:\>ping 10.0.1.1
-
-10.0.1.1 に ping を送信しています 32 バイトのデータ:
-10.0.1.1 からの応答: バイト数 =32 時間 =131ms TTL=63
-10.0.1.1 からの応答: バイト数 =32 時間 =104ms TTL=63
-10.0.1.1 からの応答: バイト数 =32 時間 =102ms TTL=63
-10.0.1.1 からの応答: バイト数 =32 時間 =81ms TTL=63
-
-10.0.1.1 の ping 統計:
-    パケット数: 送信 = 4、受信 = 4、損失 = 0 (0% の損失)、
-ラウンド トリップの概算時間 (ミリ秒):
-    最小 = 81ms、最大 = 131ms、平均 = 104ms
+-bash-4.2$ ping 10.0.1.1
+PING 10.0.1.1 (10.0.1.1) 56(84) bytes of data.
+64 bytes from 10.0.1.1: icmp_seq=1 ttl=63 time=20.1 ms
+64 bytes from 10.0.1.1: icmp_seq=2 ttl=63 time=11.8 ms
+64 bytes from 10.0.1.1: icmp_seq=3 ttl=63 time=18.1 ms
+64 bytes from 10.0.1.1: icmp_seq=4 ttl=63 time=17.7 ms
+64 bytes from 10.0.1.1: icmp_seq=5 ttl=63 time=16.5 ms
+64 bytes from 10.0.1.1: icmp_seq=6 ttl=63 time=17.1 ms
+64 bytes from 10.0.1.1: icmp_seq=7 ttl=63 time=16.6 ms
+64 bytes from 10.0.1.1: icmp_seq=8 ttl=63 time=18.8 ms
+64 bytes from 10.0.1.1: icmp_seq=9 ttl=63 time=15.2 ms
+^C
+--- 10.0.1.1 ping statistics ---
+9 packets transmitted, 9 received, 0% packet loss, time 8005ms
+rtt min/avg/max/mdev = 11.894/16.949/20.156/2.235 ms
 ```
 
 同様に、Webサーバーにログインし、vThunderのve20（10.0．2.1）に対して`ping`を実行すると応答が返ってくるので、疎通を確認できます。
 
 ```
-[root@server01 ~]# ping 10.0．2.1
-PING 10.0．2.1 (10.0．2.1) 56(84) bytes of data.
-64 bytes from 10.0．2.1: icmp_seq=1 ttl=64 time=23.0 ms
-64 bytes from 10.0．2.1: icmp_seq=2 ttl=64 time=17.2 ms
-64 bytes from 10.0．2.1: icmp_seq=3 ttl=64 time=15.0 ms
-64 bytes from 10.0．2.1: icmp_seq=4 ttl=64 time=13.0 ms
-^C
---- 10.0．2.1 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3005ms
-rtt min/avg/max/mdev = 13.073/17.118/23.055/3.740 ms
+vThunder#ping 10.0.2.1
+PING 10.0.2.1 (10.0.2.1) 56(84) bytes of data.
+64 bytes from 10.0.2.1: icmp_seq=1 ttl=64 time=29.9 ms
+64 bytes from 10.0.2.1: icmp_seq=2 ttl=64 time=28.5 ms
+64 bytes from 10.0.2.1: icmp_seq=3 ttl=64 time=26.7 ms
+64 bytes from 10.0.2.1: icmp_seq=4 ttl=64 time=25.0 ms
+64 bytes from 10.0.2.1: icmp_seq=5 ttl=64 time=31.8 ms
+
+--- 10.0.2.1 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+rtt min/avg/max/mdev = 25.076/28.435/31.872/2.387 ms
 ```
 
-vThunderからも`ping`を実行すると応答が返ってくるので、疎通を確認できます（Windows 10クライアントは応答を返さない設定になっていますのでご注意ください）。
+vThunderからも`ping`を実行すると応答が返ってくるので、疎通を確認できます。
 
 ```
 vThunder#ping 10.0.2.11
