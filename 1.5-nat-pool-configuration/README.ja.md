@@ -37,7 +37,7 @@ NATプールとして10.0．2.100のアドレス1つを割り当て、構成変�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       pool_name: "p1"
       start_address: "10.0.2.100"
       end_address: "10.0.2.100"
@@ -49,7 +49,7 @@ NATプールとして10.0．2.100のアドレス1つを割り当て、構成変�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
