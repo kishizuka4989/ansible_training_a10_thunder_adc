@@ -28,7 +28,7 @@
 - クライアント用CentOS （Client）
 - Ansible実行用CentOS （Ansible Server）
 - vThunder （vThunder）
-- WebサーバCentOS （Web Server 1）
-- WebサーバCentOS （Web Server 2）
+- Webサーバ1 （Web Server 1）
+- Webサーバ2 （Web Server 2）
 
 同様の環境を自身の検証環境に構成することで、この演習を同じように実施することも可能です。
