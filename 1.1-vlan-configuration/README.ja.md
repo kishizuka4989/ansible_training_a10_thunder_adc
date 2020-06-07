@@ -85,7 +85,7 @@ Ansible実行用サーバーのplaybookディレクトリで、`a10_network_vlan
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       vlan_num: "10"
       untagged_eth_list:
         - untagged_ethernet_start: "1"
@@ -210,7 +210,7 @@ Playbookの内容のうち、`state`を`present`から`absent`に書き換えて
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       vlan_num: "10"
       untagged_eth_list:
         - untagged_ethernet_start: "1"
@@ -292,7 +292,7 @@ Playbookの内容を以下のように書き換えて保存します。
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       vlan_num: "{{ item.vlan_num }}"
       untagged_eth_list:
         - untagged_ethernet_start: "{{ item.untagged_ethernet_start }}"
@@ -310,16 +310,14 @@ Playbookの内容を以下のように書き換えて保存します。
 このPlaybookを実行すると、以下のようになります。
 
 ```
-[root@ansible playbook]# ansible-playbook -i hosts a10_network_vlans_create.yaml
+PLAY [192.168.0.1] *************************************************************************************************************************
 
-PLAY [192.168.0.1] ********************************************************************************************************************************
+TASK [Create VLAN] *************************************************************************************************************************
+changed: [192.168.0.1] => (item={u'vlan_num': 10, u'untagged_ethernet_start': 1, u'untagged_ethernet_end': 1, u've': 10})
+changed: [192.168.0.1] => (item={u'vlan_num': 20, u'untagged_ethernet_start': 2, u'untagged_ethernet_end': 2, u've': 20})
 
-TASK [Create VLAN] ********************************************************************************************************************************
-changed: [192.168.0.1] => (item={'vlan_num': 10, 'untagged_ethernet_start': 1, 'untagged_ethernet_end': 1, 've': 10})
-changed: [192.168.0.1] => (item={'vlan_num': 20, 'untagged_ethernet_start': 2, 'untagged_ethernet_end': 2, 've': 20})
-
-PLAY RECAP ****************************************************************************************************************************************
-192.168.0.1                : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *********************************************************************************************************************************
+192.168.0.1                : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 一つのタスクで2つの構成変更を実施し、構成変更が実行されて無事タスクが完了していることが分かります。
@@ -365,17 +363,14 @@ VLAN 10と20の設定がどちらも入っていることがわかります。
 もう一度同じPlaybookを実行してみます。
 
 ```
-[root@ansible playbook]# ansible-playbook -i hosts a10_network_vlans_create.yaml
+PLAY [192.168.0.1] *************************************************************************************************************************
 
-PLAY [192.168.0.1] ********************************************************************************************************************************
+TASK [Create VLAN] *************************************************************************************************************************
+ok: [192.168.0.1] => (item={u'vlan_num': 10, u'untagged_ethernet_start': 1, u'untagged_ethernet_end': 1, u've': 10})
+ok: [192.168.0.1] => (item={u'vlan_num': 20, u'untagged_ethernet_start': 2, u'untagged_ethernet_end': 2, u've': 20})
 
-TASK [Create VLAN] ********************************************************************************************************************************
-ok: [192.168.0.1] => (item={'vlan_num': 10, 'untagged_ethernet_start': 1, 'untagged_ethernet_end': 1, 've': 10})
-ok: [192.168.0.1] => (item={'vlan_num': 20, 'untagged_ethernet_start': 2, 'untagged_ethernet_end': 2, 've': 20})
-
-PLAY RECAP ****************************************************************************************************************************************
-192.168.0.1                : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-
+PLAY RECAP *********************************************************************************************************************************
+192.168.0.1                : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 こちらでも冪等性が保たれていることがわかります。
@@ -400,7 +395,7 @@ terminal idle-timeout 0
 !
 !
 interface management
-  ip address 192.168.0.1 255.255.0.0
+  ip address 192.168.0.1 255.255.255.0
   exit-module
 !
 interface ethernet 1
@@ -440,7 +435,7 @@ Playbookを以下のように記述し保存します。
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
@@ -492,7 +487,7 @@ vlan 20
 !
 !
 interface management
-  ip address 192.168.0.1 255.255.0.0
+  ip address 192.168.0.1 255.255.255.0
   exit-module
 !
 interface ethernet 1
@@ -541,7 +536,7 @@ end
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       ve_ifnum: "{{ item.ve_ifnum }}"
       address_list:
         - ipv4_address: "{{ item.ipv4_address }}"
@@ -556,7 +551,7 @@ end
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
@@ -613,7 +608,7 @@ vlan 20
   router-interface ve 20
 !
 interface management
-  ip address 192.168.0.1 255.255.0.0
+  ip address 192.168.0.1 255.255.255.0
 !
 interface ethernet 1
 !
