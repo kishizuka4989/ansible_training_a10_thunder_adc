@@ -28,12 +28,33 @@ vThnderでHTTPS通信を終端するためには、vThunder上にサーバー証
 
 Ansible実行用サーバーの/root/ディレクトリ以下にcertsという名前のディレクトリを新たに作成します。
 opensslを使い、certsディレクトリ内で自己証明書や秘密鍵を生成します。
+server.csrの作成時にはCountry NameとCommon Nameが必須になるので、以下の例のように適当な値を入力ください。
+その他は空欄で構いません。
 
 ```
 [root@ansible ~]# mkdir certs
 [root@ansible ~]# cd certs
 [root@ansible certs]# openssl genrsa 2048 > server.key
 [root@ansible certs]# openssl req -new -key server.key > server.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:JP
+State or Province Name (full name) []:
+Locality Name (eg, city) [Default City]:
+Organization Name (eg, company) [Default Company Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (eg, your name or your server's hostname) []:www.example.com
+Email Address []:
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
 [root@ansible certs]# openssl x509 -req -days 3650 -signkey server.key < server.csr > server.crt
 ```
 
@@ -66,7 +87,7 @@ vThunderからAnsible実行用サーバーにSFTPでアクセスし、証明書�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       ssl_cert: "server.crt"
       use_mgmt_port: True
       overwrite: True
@@ -79,7 +100,7 @@ vThunderからAnsible実行用サーバーにSFTPでアクセスし、証明書�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       ssl_key: "server.key"
       use_mgmt_port: True
       overwrite: True
