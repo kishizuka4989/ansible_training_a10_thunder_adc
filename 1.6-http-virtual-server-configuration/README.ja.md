@@ -40,7 +40,7 @@ Virtual-Serverに仮想IP（VIP）として10.0.1.100、HTTPでのListenポー�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       name: "vip1"
       ip_address: "10.0.1.100"
       port_list:
@@ -55,7 +55,7 @@ Virtual-Serverに仮想IP（VIP）として10.0.1.100、HTTPでのListenポー�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
@@ -194,8 +194,37 @@ Virtual-Serverを設定する部分は冪等性が保たれていることがわ
 
 Virtual-Serverの動作を確認するために、クライアントからVirtual-ServerのVIPにHTTPでアクセスします。
 
-Windows 10クライアントからは、ブラウザ（Chrome、Firefox、Edgeなど）で、http://10.0.1.100/にアクセスします。
-10秒程度間隔をあけて再読み込みを実行すると、実行するたびに負荷分散されてアクセスするWebサーバーが変わることを確認できます。
+CentOSクライアントのターミナルからcurlを利用してVIP（10.0.1.100）にアクセスします。
+繰り返しコマンドを実行すると、1回ごとにサーバーが入れ替わっている（＝round-robin方式でアクセスが分散されている）ことが確認できます。
+
+```
+-bash-4.2$ curl http://10.0.1.100/
+<HTML>
+<HEAD>
+<TITLE>A10 Networks AX Training</TITLE>
+</HEAD>
+<BODY>
+<h1>It works!</h1>
+<h2>You are on Server S1</h2>
+<p></p>
+</body>
+</html>
+-bash-4.2$ curl http://10.0.1.100/
+<HTML>
+<HEAD>
+<TITLE>A10 Networks AX Training</TITLE>
+</HEAD>
+<BODY>
+<h1>It works!</h1>
+<h2>You are on Server S2</h2>
+<p></p>
+</body>
+</html>
+-bash-4.2$
+```
+
+CentOSクライアントからは、ブラウザ（Firefox）で、http://10.0.1.100/にアクセスすることもできます。
+この場合は、ブラウザの仕様でブラウザを再起動しないとサーバーの切り替わりを確認することができませんのでご注意ください。
 
 vThunderで負荷分散の状況を確認するには、これまで実行してきた`show slb virtual-server`、`show slb service-group`、`show slb server`などを実行します。
 
