@@ -77,6 +77,7 @@ Service Groupの中で負荷分散の方式を設定します（ここでは到�
 
 CentOSのクライアントが1台、仮想版のThunderであるvThunderを1台、サーバー負荷分散の対象となるWebサーバーを2台用意しています。
 上記に加え、Ansibleの実行用にCentOSのサーバーを1台用意しています。
+それぞれのWebサーバーは、vThunderを利用しています。
 
 CentOSクライアントにはSSH経由またはRemote Desktop経由で、Ansible実行用のCentOSサーバーにはSSH経由で外部からのアクセスが可能です。
 その他の機器には、CentOSクライアントまたはAnsible実行用サーバーから上図中に示されている管理用のIPアドレスにアクセスすることで、管理用ポートからのログインが可能です。
