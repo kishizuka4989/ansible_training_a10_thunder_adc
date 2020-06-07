@@ -37,7 +37,7 @@ Service-Groupを設定するために、Ansible実行用サーバーのplaybook�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       name: "sg1"
       protocol: "tcp"
       lb_method: "round-robin"
@@ -53,7 +53,7 @@ Service-Groupを設定するために、Ansible実行用サーバーのplaybook�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
