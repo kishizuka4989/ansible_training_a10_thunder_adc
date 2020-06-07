@@ -7,7 +7,7 @@
 - [Thunder用Ansibleモジュールについて](#Thunder用Ansibleモジュールについて)
 - [サーバ負荷分散の基礎](#サーバ負荷分散の基礎)
 - [演習環境について](#演習環境について)
-- [Windows10へのリモートデスクトップ接続](#Windows10へのリモートデスクトップ接続)
+- [CentOSクライアントへのリモートデスクトップ接続](#CentOSクライアントへのリモートデスクトップ接続)
 - [vThunderの構成確認](#vThunderの構成確認)
 - [Ansible実行サーバの環境確認と初期設定](#Ansible実行サーバの環境確認と初期設定)
 
@@ -75,25 +75,25 @@ Service Groupの中で負荷分散の方式を設定します（ここでは到�
 
 本演習での演習環境は上記のようになっています。
 
-Windows 10のクライアントが1台、仮想版のThunderであるvThunderを1台、サーバー負荷分散の対象となるWebサーバー（CentOSサーバ）を2台用意しています。
+CentOSのクライアントが1台、仮想版のThunderであるvThunderを1台、サーバー負荷分散の対象となるWebサーバーを2台用意しています。
 上記に加え、Ansibleの実行用にCentOSのサーバーを1台用意しています。
 
-Windows 10クライアントにはRemote Desktopで、Ansible実行用のCentOSサーバーにはSSH経由で外部からのアクセスが可能です。
-その他の機器には、Windows 10クライアントまたはAnsible実行用サーバーから上図中に示されている管理用のIPアドレスにアクセスすることで、管理用ポートからのログインが可能です。
+CentOSクライアントにはSSH経由またはRemote Desktop経由で、Ansible実行用のCentOSサーバーにはSSH経由で外部からのアクセスが可能です。
+その他の機器には、CentOSクライアントまたはAnsible実行用サーバーから上図中に示されている管理用のIPアドレスにアクセスすることで、管理用ポートからのログインが可能です。
 
 データ通信用のネットワークは2つのセグメントに分かれています。
 vThunderのethernet 1は10.0.1.0/24のネットワークセグメントに接続されており、vThunderのethernet 2とWebサーバーは10.0.2.0/24のネットワークセグメントに接続されています。
 
-本演習では、簡単のために全ての操作をroot/admin権限で実施します。
+本演習では、簡単のために全ての操作をrootまたはadmin権限で実施します。
 
-# Windows10へのリモートデスクトップ接続
+# CentOSクライアントへのリモートデスクトップ接続
 
-まず、演習環境のWindows 10クライアントへリモートデスクトップ接続します。
+まず、演習環境のCentOSクライアントへリモートデスクトップ接続します。
 リモートデスクトップ接続用に利用するドメイン名またはIPアドレスについては、演習担当から別途通知されますのでそちらをご利用ください。
 
 # vThunderの構成確認
 
-リモートデスクトップでWindows 10クライアントにログインできたら、Teratermなどを使ってvThunderにログインします。
+リモートデスクトップでCentOSクライアントにログインできたら、ターミナルなどを利用してvThunderにログインします。
 vThunderの管理用IPアドレスにSSHで接続し、ユーザ名とパスワードを入力してログインします。
 
 ThunderのCLIには、Execモード、Enableモード、Configモードの3種類のモードがあります。
@@ -119,17 +119,11 @@ multi-config enable
 terminal idle-timeout 0
 !
 interface management
-  ip address 10.255.0.1 255.255.0.0
-  ip default-gateway 10.255.255.1
+  ip address 192.168.0.1 255.255.255.0
 !
 interface ethernet 1
 !
 interface ethernet 2
-!
-!
-sflow setting local-collection
-!
-sflow collector ip 127.0.0.1 6343
 !
 !
 end
@@ -146,7 +140,7 @@ vThunder> exit
 
 # Ansible実行サーバの環境確認と初期設定
 
-Windows 10クライアントから、またはインターネット経由でAnsible実行サーバにSSHでrootとしてログインします。
+CentOSクライアントからAnsible実行サーバにSSHでrootとしてログインします。
 ログインすると、以下のディレクトリがあることを確認できます（以下のもの以外のファイルやディレクトリはそのままにしておいてください）。
 - example_certs: 応用演習に関するTLS証明書と秘密鍵のサンプルが格納されています
 - example_playbook: 本演習に関するAnsible Playbookのサンプルが格納されています
