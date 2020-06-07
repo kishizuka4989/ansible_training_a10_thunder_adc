@@ -41,7 +41,7 @@ Server s2に対して`action: "disable"`を設定することでWebサーバー�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       name: "s2"
       host: "10.0.2.12"
       action: "disable"
@@ -179,7 +179,7 @@ s2: Total                 0          2          12         8          0         
 
 Server s2がDisableになっているため、Virtual-ServerもService-GroupもFunctional Upの状態になります。
 
-クライアントからアクセスすると、Server s2がDisableになっているため、Server s1にのみトラフィックが転送されていることがわかります。
+クライアントからcurlでアクセスすると、Server s2がDisableになっているため、Server s1にのみトラフィックが転送されていることがわかります。
 
 # Serverを切り戻すPlaybookの作成
 
@@ -208,7 +208,7 @@ Server s2に対して`action: "enable"`を設定することでWebサーバー�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       name: "s2"
       host: "10.0.2.12"
       action: "enable"
@@ -343,7 +343,7 @@ s2: Total                 0          2          12         8          0         
 
 Server s2がEnableに戻ったため、Virtual-ServerもService-GroupもAll Upの状態になります。
 
-ここで、クライアントからアクセスすると、Server s1とs2に均等にトラフィックが転送されていることがわかります。
+ここで、再度クライアントからcurlでアクセスすると、Server s1とs2に均等にトラフィックが転送されていることがわかります。
 
 基本編の演習はここまでになります。時間があれば応用編にお進みください。
 
