@@ -37,7 +37,7 @@ Serverを設定するために、Ansible実行用サーバーのplaybookディ�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       name: "{{ item.name }}"
       host: "{{ item.host }}"
       port_list:
@@ -53,8 +53,7 @@ Serverを設定するために、Ansible実行用サーバーのplaybookディ�
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
-      state: present
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
@@ -75,8 +74,8 @@ Serverを設定するために、Ansible実行用サーバーのplaybookディ�
 PLAY [192.168.0.1] ********************************************************************************************************************************
 
 TASK [Configure real server] **********************************************************************************************************************
-changed: [192.168.0.1] => (item={'name': 's1', 'host': '10.0.2.11', 'port_number': 80, 'protocol': 'tcp'})
-changed: [192.168.0.1] => (item={'name': 's2', 'host': '10.0.2.12', 'port_number': 80, 'protocol': 'tcp'})
+changed: [192.168.0.1] => (item={u'port_number': 80, u'host': u'192.168.2.1', u'protocol': u'tcp', u'name': u's1'})
+changed: [192.168.0.1] => (item={u'port_number': 80, u'host': u'192.168.2.2', u'protocol': u'tcp', u'name': u's2'})
 
 TASK [Write memory] *******************************************************************************************************************************
 changed: [192.168.0.1]
@@ -166,8 +165,8 @@ s2: Total                 0          0          0          0          0         
 PLAY [192.168.0.1] ********************************************************************************************************************************
 
 TASK [Configure real server] **********************************************************************************************************************
-ok: [192.168.0.1] => (item={'name': 's1', 'host': '10.0.2.11', 'port_number': 80, 'protocol': 'tcp'})
-ok: [192.168.0.1] => (item={'name': 's2', 'host': '10.0.2.12', 'port_number': 80, 'protocol': 'tcp'})
+ok: [192.168.0.1] => (item={u'port_number': 80, u'host': u'192.168.2.1', u'protocol': u'tcp', u'name': u's1'})
+ok: [192.168.0.1] => (item={u'port_number': 80, u'host': u'192.168.2.2', u'protocol': u'tcp', u'name': u's2'})
 
 TASK [Write memory] *******************************************************************************************************************************
 changed: [192.168.0.1]
