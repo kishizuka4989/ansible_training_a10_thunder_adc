@@ -223,7 +223,7 @@ PLAY RECAP *********************************************************************
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       ip_dest_addr: "0.0.0.0"
       ip_mask: "/0"
       ip_nexthop_ipv4:
