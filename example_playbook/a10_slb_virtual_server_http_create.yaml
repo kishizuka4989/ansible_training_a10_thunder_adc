@@ -1,0 +1,33 @@
+---
+- hosts: 192.168.0.1
+  connection: local
+  gather_facts: no
+  collections:
+    - a10.acos_axapi
+
+  vars:
+    ansible_host: "192.168.0.1"
+  tasks:
+  - name: Configure virtual server
+    a10_slb_virtual_server:
+      ansible_host: "{{ ansible_host }}"
+      ansible_port: "{{ ansible_port }}"
+      ansible_username: "{{ ansible_username }}"
+      ansible_password: "{{ ansible_password }}"
+      name: "vip1"
+      ip_address: "10.0.1.100"
+      port_list:
+        - port_number: "80"
+          protocol: "http"
+          service_group: "sg1"
+          pool: "p1"
+      state: present
+
+  - name: Write memory
+    a10_write_memory:
+      ansible_host: "{{ ansible_host }}"
+      ansible_port: "{{ ansible_port }}"
+      ansible_username: "{{ ansible_username }}"
+      ansible_password: "{{ ansible_password }}"
+      state: present
+      partition: all

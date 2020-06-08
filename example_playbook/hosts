@@ -1,0 +1,7 @@
+[vThunder]
+192.168.0.1
+
+[vThunder:vars]
+ansible_username=admin
+ansible_password=a10
+ansible_port=443

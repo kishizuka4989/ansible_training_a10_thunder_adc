@@ -1,0 +1,22 @@
+---
+- hosts: 192.168.0.1
+  connection: local
+  gather_facts: no
+  collections:
+    - a10.acos_axapi
+
+  vars:
+    ansible_host: "192.168.0.1"
+  tasks:
+  - name: Create VLAN
+    a10_network_vlan:
+      ansible_host: "{{ ansible_host }}"
+      ansible_port: "{{ ansible_port }}"
+      ansible_username: "{{ ansible_username }}"
+      ansible_password: "{{ ansible_password }}"
+      vlan_num: "10"
+      untagged_eth_list:
+        - untagged_ethernet_start: "1"
+          untagged_ethernet_end: "1"
+      ve: "10"
+      state: present
