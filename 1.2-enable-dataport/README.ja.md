@@ -235,7 +235,7 @@ PLAY RECAP *********************************************************************
       ansible_host: "{{ ansible_host }}"
       ansible_port: "{{ ansible_port }}"
       ansible_username: "{{ ansible_username }}"
-      ansible_password: "{{ ansilbe_password }}"
+      ansible_password: "{{ ansible_password }}"
       state: present
       partition: all
 ```
