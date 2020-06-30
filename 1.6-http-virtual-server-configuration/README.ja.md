@@ -223,7 +223,7 @@ CentOSクライアントのターミナルからcurlを利用してVIP（10.0.1.
 -bash-4.2$
 ```
 
-CentOSクライアントからは、ブラウザ（Firefox）で、http://10.0.1.100/にアクセスすることもできます。
+CentOSクライアントからは、ブラウザ（Firefox）で、`http://10.0.1.100/`にアクセスすることもできます。
 この場合は、ブラウザの仕様でブラウザを再起動しないとサーバーの切り替わりを確認することができませんのでご注意ください。
 
 vThunderで負荷分散の状況を確認するには、これまで実行してきた`show slb virtual-server`、`show slb service-group`、`show slb server`などを実行します。
