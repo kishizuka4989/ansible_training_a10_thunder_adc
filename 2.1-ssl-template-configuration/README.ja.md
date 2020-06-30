@@ -157,7 +157,7 @@ end
 !Current config commit point for partition 0 is 0 & config mode is classical-mode
 ```
 
-新たにslb template client-ssl　ssl1として、SSL/TLSテンプレートが作成されています。
+新たに`slb template client-ssl ssl1`として、SSL/TLSテンプレートが作成されています。
 次の演習では、Virtual-ServerにSSL/TLSテンプレートを紐づけ、HTTPSでのサービス提供を実現します。
 
 本演習は以上となります。  [トレーニングガイドに戻る](../README.ja.md)
