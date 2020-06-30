@@ -24,7 +24,7 @@ A10 Thunder用のREST APIであるaXAPIを利用するAnsibleモジュールは�
 
 これらのモジュールを利用可能にするための方法を記述したスタートアップガイドは以下にあります。本演習で利用する環境では、このガイドに基づいて環境が構築されています。
 
-[Clieck here to A10 Ansible Modules Startup Guide](./202006_Ansible_Guide.pdf)
+[Click here to A10 Ansible Modules Startup Guide](./202006_Ansible_Guide.pdf)
 
 A10の提供するAnsibleモジュールではA10 Thunderの提供するREST APIであるaXAPI、またはSSHを経由したCLIコマンドを利用しています。
 Ansibleモジュールを実行する際は、Ansible Coreが動作しているサーバにSSHし、ローカルでモジュールを実行することで、aXAPI/SSHを通じた構成変更が行われます。
@@ -148,9 +148,9 @@ CentOSクライアントからAnsible実行サーバにSSHでrootとしてログ
 
 `example_certs`や`example_playbook`の内容は、このトレーニングのGitHubにも格納されています。
 
-[Clieck here to example_certs directory](../example_certs/)
+[Click here to example_certs directory](../example_certs/)
 
-[Clieck here to example_playbook directory](../example_playbook/)
+[Click here to example_playbook directory](../example_playbook/)
 
 Ansibleのバージョンや、環境変数の確認を以下のように実施してください。
 ```
