@@ -69,7 +69,7 @@ Virtual-Serverを設定するために、Ansible実行用サーバーのplaybook
 
 - `port_list:`は、リスト形式のモジュールのパラメーターで、`a10_slb_virtual_server`で設定するVirtual-ServerがListenするポートでSSL/TLSを終端するために紐づけるSSL/TLSテンプレートを`template_client_ssl`で指定します。
 
-既存のport_list設定（port 80 http）を残す場合は、必ずPlaybookに記述する必要があります。
+既存のport_list設定（`port 80 http`）を残す場合は、必ずPlaybookに記述する必要があります。
 記述がない場合は、既存のport設定が消えて新規の（Playbook内に記述された）port設定のみが設定される形になります。
 
 ここまで記述したところで、Playbookを保存しコマンドラインに戻ります。
@@ -94,7 +94,7 @@ PLAY RECAP *********************************************************************
 
 ```
 
-2つのタスクが連続実行され、1つ目のタスク（Configure　virtual server and HTTPS port）でHTTPとHTTPSの双方でListenするVirtual-Serverが構成され、2つ目のタスク（Write memory）で変更した構成が起動用の設定として保存されたことがわかります。
+2つのタスクが連続実行され、1つ目のタスク（Configure virtual server and HTTPS port）でHTTPとHTTPSの双方でListenするVirtual-Serverが構成され、2つ目のタスク（Write memory）で変更した構成が起動用の設定として保存されたことがわかります。
 
 vThunderの設定を確認してみましょう。
 
@@ -165,7 +165,7 @@ end
 !Current config commit point for partition 0 is 0 & config mode is classical-mode
 ```
 
-新たにslb virtual-serverにport 443/httpsのトラフィックに対し、SSL/TLSテンプレートssl1を使ってSSL/TLS通信を終端し、NATプールp1を使ってSNATしながら、Service-Group　sg1を用いてサーバー負荷分散する設定が追加されています。
+新たに`slb virtual-server`に、port 443/httpsのトラフィックに対してSSL/TLSテンプレートssl1を使ってSSL/TLS通信を終端し、NATプールp1を使ってSNATしながら、Service-Group sg1を用いてサーバー負荷分散する設定が追加されています。
 
 ここで、`show slb virtual-server`をvThunderで実行します。
 
@@ -195,7 +195,7 @@ Total received conn attempts on this port: 0
 
 Virtual-Serverの動作を確認するために、クライアントからVirtual-ServerのVIPにHTTPSでアクセスします。
 
-CentOSクライアントからは、curlでhttps://10.0.1.100/にアクセスします。
+CentOSクライアントからは、curlで`https://10.0.1.100/`にアクセスします。
 サーバー証明書に自己証明書を用いているため、curlの証明書の正当性に関する警告を無視するオプションとして-kを付与してください。
 
 ```
@@ -224,7 +224,7 @@ CentOSクライアントからは、curlでhttps://10.0.1.100/にアクセスし
 -bash-4.2$
 ```
 
-ブラウザ（Firefox）で、https://10.0.1.100/にアクセスすることもできます。
+ブラウザ（Firefox）で、`https://10.0.1.100/`にアクセスすることもできます。
 サーバー証明書に自己証明書を用いているため、初回のアクセスでは警告が出ますが、警告を無視してアクセスしてください。
 ブラウザを再起動して再読み込みを実行すると、実行するたびに負荷分散されてアクセスするWebサーバーが変わることを確認できます。
 
